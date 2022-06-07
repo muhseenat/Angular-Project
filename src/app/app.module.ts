@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule, } from '@angular/common/http';
+// HTTP_INTERCEPTORS 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,8 @@ import { MatSelectModule } from '@angular/material/select';
     BrowserAnimationsModule,
     FormsModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
