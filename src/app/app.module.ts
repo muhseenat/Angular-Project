@@ -8,7 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
-import { HttpClientModule, } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, } from '@angular/common/http';
+import { HttpErrorsInterceptor } from './interceptors/http-errors.interceptor';
+import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor';
 // HTTP_INTERCEPTORS 
 
 @NgModule({
@@ -26,7 +28,18 @@ import { HttpClientModule, } from '@angular/common/http';
     MatFormFieldModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:HttpErrorsInterceptor,
+      multi:true,
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttpHeadersInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
